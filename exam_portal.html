@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>受験情報ポータル - オープンチャット</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        h2 {
+            text-align: center;
+            font-size: 1.75rem;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .card {
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            background: #ffffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .card-body {
+            flex-grow: 1;
+            margin-bottom: 24px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .features li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .features li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #ffffff;
+            transition: opacity 0.2s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* 個別カラー設定 */
+        /* 1. 数学部屋：サーモンピンク */
+        .card-math { border-color: #fa8072; }
+        .card-math .icon { background-color: #ffeae6; }
+        .card-math .card-title { color: #e05343; }
+        .card-math .tag { background-color: #ffeae6; color: #e05343; }
+        .card-math .btn { background-color: #fa8072; }
+        .card-math .features li::before { color: #fa8072; }
+
+        /* 2. 高校受験部屋：ピンク */
+        .card-highschool { border-color: #ff69b4; }
+        .card-highschool .icon { background-color: #fff0f5; }
+        .card-highschool .card-title { color: #d82e85; }
+        .card-highschool .tag { background-color: #fff0f5; color: #d82e85; }
+        .card-highschool .btn { background-color: #ff69b4; }
+        .card-highschool .features li::before { color: #ff69b4; }
+
+        /* 3. 英語部屋：オレンジ */
+        .card-english { border-color: #ff8c00; }
+        .card-english .icon { background-color: #fff3e0; }
+        .card-english .card-title { color: #e65c00; }
+        .card-english .tag { background-color: #fff3e0; color: #e65c00; }
+        .card-english .btn { background-color: #ff8c00; }
+        .card-english .features li::before { color: #ff8c00; }
+
+        /* 4. 大学受験部屋：暗めのワインレッド */
+        .card-university { border-color: #580d19; }
+        .card-university .icon { background-color: #f5e6e8; }
+        .card-university .card-title { color: #580d19; }
+        .card-university .tag { background-color: #f5e6e8; color: #580d19; }
+        .card-university .btn { background-color: #580d19; }
+        .card-university .features li::before { color: #580d19; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>COMMUNITY</h2>
+    <p class="subtitle">勉強会・相談できる場所</p>
+
+    <div class="grid-container">
+        <!-- 数学専門部屋 -->
+        <div class="card card-math">
+            <div>
+                <div class="card-header">
+                    <div class="icon">➗</div>
+                    <h3 class="card-title">数学専門部屋</h3>
+                </div>
+                <div class="card-body">
+                    <span class="tag">教科特化</span>
+                    <ul class="features">
+                        <li>数学に集中して勉強したい人向け</li>
+                        <li>わからない問題の質問や解説に</li>
+                        <li>勉強のきっかけづくり・モチベーション維持に</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="btn">数学専門部屋へ →</a>
+        </div>
+
+        <!-- 高校受験部屋 -->
+        <div class="card card-highschool">
+            <div>
+                <div class="card-header">
+                    <div class="icon">📚</div>
+                    <h3 class="card-title">高校受験部屋</h3>
+                </div>
+                <div class="card-body">
+                    <span class="tag">中学生向け</span>
+                    <ul class="features">
+                        <li>高校受験生のためのオンライン勉強会</li>
+                        <li>志望校合格に向けて一緒に頑張りたい人へ</li>
+                        <li>受験勉強の情報交換や励まし合いに</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="btn">オープンチャットへ →</a>
+        </div>
+
+        <!-- 英語専門部屋 -->
+        <div class="card card-english">
+            <div>
+                <div class="card-header">
+                    <div class="icon">🔤</div>
+                    <h3 class="card-title">英語専門部屋</h3>
+                </div>
+                <div class="card-body">
+                    <span class="tag">教科特化</span>
+                    <ul class="features">
+                        <li>英語を重点的に勉強したい人向け</li>
+                        <li>単語や文法、長文読解の質問・相談に</li>
+                        <li>毎日の英語学習を習慣化したい人へ</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="btn">英語専門部屋へ →</a>
+        </div>
+
+        <!-- 大学受験・大学生部屋 -->
+        <div class="card card-university">
+            <div>
+                <div class="card-header">
+                    <div class="icon">🎓</div>
+                    <h3 class="card-title">大学受験・大学生部屋</h3>
+                </div>
+                <div class="card-body">
+                    <span class="tag">高校生向け</span>
+                    <ul class="features">
+                        <li>大学受験を目指す高校生のための部屋</li>
+                        <li>大学受験の対策や共通テストの情報交換</li>
+                        <li>現役大学生との交流で大学生活を覗き見</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="btn">オープンチャットへ →</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
