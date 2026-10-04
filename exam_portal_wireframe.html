@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>受験情報ポータル</title>
+    <style>
+        /* ワイヤーフレーム用の簡易プレビュー用スタイル */
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; line-height: 1.6; margin: 0; padding: 0; background: #f9f9f9; }
+        header, section, footer { padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        .hero { text-align: center; padding: 100px 20px; background: #fff; border-bottom: 1px solid #eee; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .scroll-hint { font-size: 0.9rem; color: #888; letter-spacing: 0.1em; margin-top: 40px; }
+        .section-title { text-align: center; font-size: 1.8rem; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: #fff; padding: 30px; border: 1px solid #ddd; border-radius: 4px; }
+        .card h3 { margin-top: 0; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; border: 1px solid #333; text-decoration: none; color: #333; font-size: 0.9rem; }
+        .btn:hover { background: #333; color: #fff; }
+        .community-section { background: #f0f4f8; border-top: 1px solid #e0e8f0; border-bottom: 1px solid #e0e8f0; }
+        footer { text-align: center; color: #888; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION (indexベース) -->
+    <header class="hero">
+        <p style="letter-spacing: 0.2em; color: #666; font-size: 0.9rem;">EXAM INFORMATION PORTAL</p>
+        <h1>受験に役立つ情報を、ここから。</h1>
+        <p>勉強法や受験に役立つコラムと、先輩たちのリアルな受験体験記。<br>そして、共に励まし合える受験生のコミュニティをまとめています。</p>
+        <div class="scroll-hint">SCROLL TO EXPLORE</div>
+    </header>
+
+    <!-- CONTENTS SECTION (indexベース) -->
+    <section id="contents">
+        <h2 class="section-title">知りたい情報を、ここから。</h2>
+        <div class="grid">
+            <!-- コラム -->
+            <div class="card">
+                <h3><span>📝</span> コラム</h3>
+                <p>勉強法や受験に関する情報をまとめています。受験勉強のヒントを探している人へ。</p>
+                <a href="#" class="btn">コラムを見る</a>
+            </div>
+            <!-- 受験体験記 -->
+            <div class="card">
+                <h3><span>🎓</span> 受験体験記</h3>
+                <p>先輩たちが実際に経験した受験について、リアルな体験記を読むことができます。</p>
+                <a href="#" class="btn">受験体験記を見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY SECTION (新しく統合) -->
+    <section id="community" class="community-section">
+        <h2 class="section-title">勉強会・相談できる場所。</h2>
+        <p style="text-align: center; max-width: 600px; margin: -20px auto 40px;">一人で悩まず、全国の受験生や仲間とつながろう。目的や教科に合わせたオンラインの勉強場所です。</p>
+        
+        <div class="grid">
+            <!-- 学年・目的別 -->
+            <div class="card">
+                <h3><span>📚</span> 高校受験部屋 <span style="font-size:0.8rem; color:#666; font-weight:normal;">(中学生向け)</span></h3>
+                <p>高校受験生のためのオンライン勉強会。志望校合格に向けて一緒に頑張りたい人、情報交換や励まし合いに。</p>
+                <a href="#" class="btn">オープンチャットへ →</a>
+            </div>
+            <div class="card">
+                <h3><span>🎓</span> 大学受験・大学生部屋 <span style="font-size:0.8rem; color:#666; font-weight:normal;">(高校生向け)</span></h3>
+                <p>大学受験を目指す高校生のための部屋。共通テストの対策や、現役大学生との交流で大学生活を覗き見。</p>
+                <a href="#" class="btn">オープンチャットへ →</a>
+            </div>
+            <!-- 教科特化 -->
+            <div class="card">
+                <h3><span>➗</span> 数学専門部屋 <span style="font-size:0.8rem; color:#666; font-weight:normal;">(教科特化)</span></h3>
+                <p>数学に集中して勉強したい人向け。わからない問題の質問や解説、勉強のきっかけづくり・モチベーション維持に。</p>
+                <a href="#" class="btn">数学専門部屋へ →</a>
+            </div>
+            <div class="card">
+                <h3><span>🔤</span> 英語専門部屋 <span style="font-size:0.8rem; color:#666; font-weight:normal;">(教科特化)</span></h3>
+                <p>英語を重点的に勉強したい人向け。単語や文法、長文読解の質問・相談、毎日の英語学習を習慣化したい人へ。</p>
+                <a href="#" class="btn">英語専門部屋へ →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 受験情報ポータル</p>
+    </footer>
+
+</body>
+</html>
