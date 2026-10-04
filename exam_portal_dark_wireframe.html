@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>受験情報ポータル</title>
+    <style>
+        /* 提供された画像（夜空・雲・LINE風トーン）を基調としたカラーパレット */
+        body { 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif; 
+            color: #ffffff; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #2e3d52; /* 画像の夜空のダークブルーグレー */
+            background-image: linear-gradient(180deg, #232f42 0%, #35475f 100%);
+            min-height: 100vh;
+        }
+        
+        header, section, footer { 
+            padding: 50px 20px; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            box-sizing: border-box;
+        }
+        
+        /* HERO SECTION */
+        .hero { 
+            text-align: center; 
+            padding: 90px 20px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero p.subtitle { 
+            letter-spacing: 0.2em; 
+            color: #b2c6df; 
+            font-size: 0.9rem; 
+            margin-bottom: 10px;
+        }
+        .hero h1 { 
+            font-size: 2.6rem; 
+            margin: 0 0 20px 0; 
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .hero p.description {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #d1dfef;
+            font-size: 1.05rem;
+        }
+        .scroll-hint { 
+            font-size: 0.85rem; 
+            color: #8fa4be; 
+            letter-spacing: 0.15em; 
+            margin-top: 50px; 
+        }
+
+        /* SECTION COMMON */
+        .section-title { 
+            text-align: center; 
+            font-size: 1.9rem; 
+            margin-top: 0;
+            margin-bottom: 40px; 
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        /* CONTENTS GRID (2分割) */
+        .contents-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px; 
+        }
+        
+        @media (max-width: 768px) {
+            .contents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CARD STYLE */
+        .card { 
+            background: rgba(255, 255, 255, 0.07); 
+            padding: 35px 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.12); 
+            border-radius: 12px; 
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card h3 { 
+            margin-top: 0; 
+            font-size: 1.35rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            color: #ffffff;
+        }
+        .card h3 span.badge {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: normal;
+            color: #d1dfef;
+        }
+        .card p {
+            color: #cbdbee;
+            font-size: 0.95rem;
+            margin: 15px 0 25px 0;
+            flex-grow: 1;
+        }
+        
+        /* BUTTONS (LINE風の鮮やかなグリーンを基調に) */
+        .btn { 
+            display: inline-block; 
+            padding: 12px 24px; 
+            border-radius: 8px;
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        .btn-outline {
+            border: 1px solid #25cf5f; 
+            color: #25cf5f;
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: rgba(37, 207, 95, 0.1);
+        }
+        .btn-solid {
+            background: #25cf5f; /* 画像のトーク・適用ボタンの鮮やかなグリーン */
+            color: #ffffff;
+            border: 1px solid #25cf5f;
+        }
+        .btn-solid:hover { 
+            background: #1eb853;
+            border-color: #1eb853;
+        }
+
+        /* COMMUNITY SECTION */
+        .community-section { 
+            background: rgba(0, 0, 0, 0.15); 
+            border-top: 1px solid rgba(255, 255, 255, 0.05); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        
+        /* 4つのオープンチャットを綺麗に並べるためのグリッド設定 */
+        .community-grid { 
+            display: grid; 
+            /* デフォルト（PC・大画面）はきれいに1列に4つ並べる */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px; 
+        }
+        
+        /* 画面幅が中くらい（タブレットなど）の場合は、3列で端数がでないよう、2列×2行に綺麗に固定 */
+        @media (max-width: 1024px) {
+            .community-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* スマホなどの狭い画面では縦に1列できれいに整列 */
+        @media (max-width: 600px) {
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* FOOTER */
+        footer { 
+            text-align: center; 
+            color: #8fa4be; 
+            font-size: 0.85rem; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <p class="subtitle">EXAM INFORMATION PORTAL</p>
+        <h1>受験に役立つ情報を、ここから。</h1>
+        <p class="description">勉強法や受験に役立つコラムと、先輩たちのリアルな受験体験記。<br>そして、共に励まし合える受験生のコミュニティをまとめています。</p>
+        <div class="scroll-hint">SCROLL TO EXPLORE</div>
+    </header>
+
+    <!-- CONTENTS SECTION -->
+    <section id="contents">
+        <h2 class="section-title">知りたい情報を、ここから。</h2>
+        <div class="contents-grid">
+            <!-- コラム -->
+            <div class="card">
+                <div>
+                    <h3><span>📝</span> コラム</h3>
+                    <p>勉強法や受験に関する情報をまとめています。受験勉強のヒントを探している人へ。</p>
+                </div>
+                <a href="#" class="btn btn-outline">コラムを見る</a>
+            </div>
+            <!-- 受験体験記 -->
+            <div class="card">
+                <div>
+                    <h3><span>🎓</span> 受験体験記</h3>
+                    <p>先輩たちが実際に経験した受験について、リアルな体験記を読むことができます。</p>
+                </div>
+                <a href="#" class="btn btn-outline">受験体験記を見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section id="community" class="community-section">
+        <h2 class="section-title">勉強会・相談できる場所</h2>
+        
+        <!-- 4つのカードが崩れず綺麗に並ぶ配置 -->
+        <div class="community-grid">
+            <!-- 1. 高校受験部屋 -->
+            <div class="card">
+                <div>
+                    <h3><span>📚</span> 高校受験部屋</h3>
+                    <span class="badge">中学生向け</span>
+                    <p>高校受験生のためのオンライン勉強会。志望校合格に向けて一緒に頑張りたい人、情報交換や励まし合いに。</p>
+                </div>
+                <a href="#" class="btn btn-solid">オープンチャットへ →</a>
+            </div>
+            
+            <!-- 2. 大学受験・大学生部屋 -->
+            <div class="card">
+                <div>
+                    <h3><span>🎓</span> 大学受験部屋</h3>
+                    <span class="badge">高校生向け</span>
+                    <p>大学受験を目指す高校生のための部屋。共通テストの対策や、現役大学生との交流で大学生活を覗き見。</p>
+                </div>
+                <a href="#" class="btn btn-solid">オープンチャットへ →</a>
+            </div>
+            
+            <!-- 3. 数学専門部屋 -->
+            <div class="card">
+                <div>
+                    <h3><span>➗</span> 数学専門部屋</h3>
+                    <span class="badge">教科特化</span>
+                    <p>数学に集中したい人向け。わからない問題の質問や解説、モチベーション維持に。</p>
+                </div>
+                <a href="#" class="btn btn-solid">数学専門部屋へ →</a>
+            </div>
+            
+            <!-- 4. 英語専門部屋 -->
+            <div class="card">
+                <div>
+                    <h3><span>🔤</span> 英語専門部屋</h3>
+                    <span class="badge">教科特化</span>
+                    <p>英語を重点的に勉強したい人向け。単語や文法、長文読解の質問・相談、毎日の学習習慣化に。</p>
+                </div>
+                <a href="#" class="btn btn-solid">英語専門部屋へ →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 受験情報ポータル</p>
+    </footer>
+
+</body>
+</html>
